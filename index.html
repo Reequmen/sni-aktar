@@ -82,6 +82,42 @@
       margin-top: 14px;
       font-weight: 500;
     }
+    .hint {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+    .store-section {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #334155;
+    }
+    .store-title {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+    .store-links {
+      display: flex;
+      gap: 8px;
+    }
+    .store-btn {
+      flex: 1;
+      display: inline-block;
+      padding: 10px 8px;
+      border-radius: 10px;
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: border-color 0.2s ease;
+    }
+    .store-btn:hover {
+      border-color: #38bdf8;
+    }
   </style>
 </head>
 <body>
@@ -95,6 +131,15 @@
 
     <div id="status" class="status"></div>
     <textarea id="code-box" readonly style="display:none;width:100%;margin-top:12px;height:90px;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font-size:11px;word-break:break-all;"></textarea>
+    <div id="ios-hint" class="hint">iPhone'da otomatik açılmazsa: Kodu Panoya Kopyala → SNI Tunnel → + → Panodan İçe Aktar</div>
+
+    <div id="store-section" class="store-section">
+      <div class="store-title">SNI Tunnel yüklü değilse indirin:</div>
+      <div class="store-links">
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.asnly.snitunnel" target="_blank" rel="noopener noreferrer">Android (Google Play)</a>
+        <a class="store-btn" href="https://apps.apple.com/app/id6792381034" target="_blank" rel="noopener noreferrer">iOS (App Store)</a>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -103,12 +148,14 @@
       var openBtn = document.getElementById('open-btn');
       var copyBtn = document.getElementById('copy-btn');
       var box = document.getElementById('code-box');
+      var iosHint = document.getElementById('ios-hint');
 
       function fail(msg) {
         statusEl.innerText = msg;
         statusEl.style.color = '#ef4444';
         openBtn.style.display = 'none';
         copyBtn.style.display = 'none';
+        if (iosHint) { iosHint.style.display = 'none'; }
       }
 
       var hash = window.location.hash.substring(1);
